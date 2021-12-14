@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+{% block content %}
+	<div class="container row">
+
+	<div class="col-lg-8">
+		<div class="card">
+			<div class="card-body map ratio" style="--bs-aspect-ratio: 50%;"><!--<div class="map">-->
+				<div class="frame">
+				{% for tile in tiles %}
+					<img class="tile" src="{{ tile.url }}">
+				{% endfor %}
+				</div>
+				<div class="frame overlay">
+				{% for flag in flags %}
+					<img class="flag top-{{ flag.y }} start-{{ flag.x }}" src="https://clipartart.com/images/flag-icon-clipart.png" 
+						style="margin-left: {{ flag.x }}%;margin-top: {{ flag.y }}%;"
+						title="{{ flag.message }}">
+				{% endfor %}
+				</div>
+			</div>
+
+			<h4 class="card-footer"> Zoom: {{ coords[0] }} <br>
+				X co-ord: {{ coords[2] }} | Y co-ord: {{ coords[1] }} <br>
+				X Boundary: {{ bounds[0] }} | Y Boundary: {{ bounds[1] }} </h4>
+		</div>
+	</div>
+
+	<div class="col-lg-4 row mt-3 mt-lg-0">
+		<div class="col-md-6 col-lg-12">
+			<h3>Enter New Co-ords to Move:</h3>
+			<p>Enter a co-ord between 0, and the boundary value given above!
+			The maximum zoom level is nine. Usually. Sometimes NASA changes it.
+			<form action="{{ url_for('move') }}" method=post>
+				<div class="row">
+					<label for="height" class="heading col-sm-4 col-md-5 col-lg-4 col-form-label">Zoom level: </label>
+					<div class="col-sm-8 col-md-7 col-lg-8">
+						<input type="number" class="form-control" min=0 value=0 id="height" name="height">
+					</div>
+				</div>
+				<div class="row">
+					<label for="x-coord" class="heading col-sm-4 col-md-5 col-lg-4 col-form-label">X co-ord: </label>
+					<div class="col-sm-8 col-md-7 col-lg-8">
+						<input type="number" class="form-control" min=0 value=0 id="x-coord" name="column">
+					</div>
+				</div>
+				<div class="row">
+					<label for="y-coord" class="heading col-sm-4 col-md-5 col-lg-4 col-form-label">Y co-ord: </label>
+					<div class="col-sm-8 col-md-7 col-lg-8">
+						<input type="number" class="form-control" min=0 value=0 id="y-coord" name="row">
+					</div>
+				</div>
+				<p><input type="submit" class="btn btn-primary" value="Move"></p>
+			</form>
+		</div>
+
+		<div class="col-md-6 col-lg-12">
+			<h3>Plant a Flag!</h3>
+			<p>Flags are planted at subdivisions of your current frame view.
+			This means, picture the map you currently see divided by 20ths along
+			the x axis, and 10ths along the y axis, and the flag will be planted
+			in that square! Hover over flags to see the attached message</p>
+			<form action="{{ url_for('plant') }}" method=post>
+				<div class="row">
+					<label for="x-coordf" class="heading col-sm-4 form-label">X co-ord: </label>
+					<div class="col-sm-8">
+						<input type=number class="form-control" id="x-coordf" min=1 max=20 value=1 name=x>
+					</div>
+				</div>
+				<div class="row">
+					<label for="y-coordf" class="heading col-sm-4 form-label">Y co-ord: </label>
+					<div class="col-sm-8">
+						<input type=number class="form-control" id="y-coordf" min=1 max=10 value=1 name=y>
+					</div>
+				</div>
+				<div class="row">
+					<label for="message" class="heading col-sm-4 form-label">Message: </label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="message" name="message">
+					</div>
+				</div>
+				<p><input type="submit" class="btn btn-primary" value="Plant"></p>
+			</form>
+		</div>
+	</div>
+	</div>
+{% endblock %}

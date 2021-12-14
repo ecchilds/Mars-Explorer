@@ -1,0 +1,77 @@
+.entry {
+	margin-left: 10px;
+}
+
+.heading {
+	color: #800080;
+}
+
+div.map {
+	width: 98%;
+        #height: auto !important;
+        position: relative;
+	margin: 1%;
+	padding: 0 !important;
+	font-size: 0;
+}
+
+div.frame {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+        left: 0;
+}
+
+div.overlay {
+	z-index: 9;
+}
+
+img.tile {
+	display: inline-block;
+	border: none;
+	padding: 0px;
+	margin: 0px;
+	width: 50%;
+}
+
+img.flag {
+	height: 23px;
+	width: 23px;
+	position: absolute;
+	left: 0%
+}
+
+div.page {
+	margin-top: 70px;
+}
+
+h4.card-footer {
+	margin-bottom: 0;
+}
+
+body {
+	font-family: "Arial";
+}
+
+p {
+	font-size: 16px;
+}
+
+h1, h4 {
+	text-align: center;
+	color: #00008F;
+}
+
+h1 {
+	font-size: 30px;
+}
+
+h2 {
+	font-size: 20px;
+}
+
+a, h3, h4 {
+	font-size: 20px;
+	color: #800080;
+}
